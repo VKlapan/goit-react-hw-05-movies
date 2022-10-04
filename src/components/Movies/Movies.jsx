@@ -1,16 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getMovies } from 'servises/handlerApi';
 
 const Movies = ({ query }) => {
   const [movies, setMovies] = useState([]);
+  console.log('query in Movies', query);
 
-  const getResult = useCallback(async () => {
-    const { results } = await getMovies(query);
-    setMovies(results);
+  useEffect(() => {
+    const getListMovies = async () => {
+      console.log('first render movies');
+      const { results } = await getMovies(query);
+      setMovies(results);
+    };
+    getListMovies();
   }, [query]);
-
-  useEffect(() => getResult, [getResult]);
 
   return (
     <>
