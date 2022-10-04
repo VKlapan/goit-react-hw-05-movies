@@ -1,25 +1,20 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { getTrendedMovies, getMoviesBySearch } from 'servises/handlerApi';
+import { getMovies } from 'servises/handlerApi';
 
-const Movies = ({ search }) => {
-  const apiFunction = useMemo(
-    () => (!search ? getTrendedMovies : () => getMoviesBySearch(search)),
-    [search]
-  );
-
+const Movies = ({ query }) => {
   const [movies, setMovies] = useState([]);
 
   const getResult = useCallback(async () => {
-    const { results } = await apiFunction();
+    const { results } = await getMovies(query);
     setMovies(results);
-  }, [apiFunction]);
+  }, [query]);
 
   useEffect(() => getResult, [getResult]);
 
   return (
     <>
-      <div>List Of Movies by {search}</div>
+      <div>List Of Movies by {query}</div>
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>

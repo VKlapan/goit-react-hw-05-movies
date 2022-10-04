@@ -5,7 +5,7 @@ const SearchPage = () => {
   return (
     <>
       <SearchForm />
-      <Movies search={'cat'} />
+      <Movies query={'cat'} />
     </>
   );
 };

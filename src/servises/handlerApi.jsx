@@ -9,6 +9,14 @@ const instance = axios.create({
 const media_type = 'movie';
 const time_window = 'week';
 
+export const getMovies = query => {
+  if (!query) {
+    return getTrendedMovies();
+  } else {
+    return getMoviesBySearch(query);
+  }
+};
+
 export const getTrendedMovies = async () => {
   const { data } = await instance.get(`/trending/${media_type}/${time_window}`);
   console.log('trend', data);
