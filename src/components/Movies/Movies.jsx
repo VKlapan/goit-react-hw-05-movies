@@ -22,7 +22,7 @@ const Movies = ({ search }) => {
       <div>List Of Movies by {search}</div>
       <ul>
         {movies.map(movie => (
-          <li>
+          <li key={movie.id}>
             <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
