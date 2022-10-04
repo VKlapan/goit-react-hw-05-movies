@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import SharedLayout from 'pages/SharedLayout/SharedLayout';
-import ListMovies from './ListMovies/ListMovies';
+import Movies from './Movies/Movies';
 import SearchPage from 'pages/SearchPage/SearchPage';
 import MoviePage from 'pages/MoviePage/MoviePage';
 import Cast from './Cast/Cast';
@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<ListMovies search={'TREND'} />} />
+        <Route index element={<Movies search={null} />} />
         <Route path="/movies" element={<SearchPage />} />
         <Route path="/movies/:movieId" element={<MoviePage />}>
           <Route path="cast" element={<Cast />} />

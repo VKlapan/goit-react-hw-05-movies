@@ -1,11 +1,11 @@
 import SearchForm from 'components/SearchForm/SearchForm';
-import ListMovies from 'components/ListMovies/ListMovies';
+import Movies from 'components/Movies/Movies';
 
 const SearchPage = () => {
   return (
     <>
       <SearchForm />
-      <ListMovies search={'SEARCH'} />
+      <Movies search={'cat'} />
     </>
   );
 };
