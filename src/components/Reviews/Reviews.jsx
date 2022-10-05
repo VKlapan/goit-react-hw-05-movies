@@ -1,5 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 const Reviews = () => {
-  return <div>Reviews</div>;
+  const { movieId } = useParams();
+
+  return <div>Reviews of movie id = {movieId}</div>;
 };
 
 export default Reviews;

@@ -3,6 +3,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import MovieDetailsNavigation from 'components/MovieDetailsNavigation/MovieDetailsNavigation';
 import { getMovieDetails } from 'servises/handlerApi';
 import ctx from '../../contexts/setupContext';
+import { MovieCard, MoviePoster } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { images } = useContext(ctx);
@@ -30,11 +31,21 @@ const MovieDetails = () => {
     <>
       <div>Movie Page</div>
       <p>id = {movieId}</p>
-      <img src={secure_base_url + poster_sizes[2] + poster_path} alt={title} />
-      <p>title = {title}</p>
-      <p>vote = {vote_average}</p>
-      <p>overview = {overview}</p>
-      <p>genres = {getGenreNames(genres)}</p>
+      <MovieCard>
+        <MoviePoster>
+          <img
+            src={secure_base_url + poster_sizes[2] + poster_path}
+            alt={title}
+          />
+        </MoviePoster>
+        <div>
+          <p>title = {title}</p>
+          <p>vote = {vote_average}</p>
+          <p>overview = {overview}</p>
+          <p>genres = {getGenreNames(genres)}</p>
+        </div>
+      </MovieCard>
+
       <MovieDetailsNavigation />
       <Outlet />
     </>
