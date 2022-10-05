@@ -1,12 +1,18 @@
 import SearchForm from 'components/SearchForm/SearchForm';
 import Movies from 'components/Movies/Movies';
+import { useState } from 'react';
 
 const SearchPage = () => {
-  const query = 'cat';
+  const [query, setQuery] = useState('');
+
+  const onSubmit = query => {
+    setQuery(query);
+  };
+
   return (
     <>
-      <SearchForm />
-      <Movies query={query} />
+      <SearchForm onSubmit={onSubmit} />
+      {query !== '' && <Movies query={query} />}
     </>
   );
 };

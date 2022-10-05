@@ -10,7 +10,8 @@ const media_type = 'movie';
 const time_window = 'week';
 
 export const getMovies = query => {
-  if (query === '') {
+  if (query === '') return;
+  if (query === null) {
     return getTrendedMovies();
   } else {
     return getMoviesBySearch(query);
