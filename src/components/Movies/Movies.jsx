@@ -4,11 +4,9 @@ import { getMovies } from 'servises/handlerApi';
 
 const Movies = ({ query }) => {
   const [movies, setMovies] = useState([]);
-  console.log('query in Movies', query);
 
   useEffect(() => {
     const getListMovies = async () => {
-      console.log('first render movies');
       const { results } = await getMovies(query);
       setMovies(results);
     };

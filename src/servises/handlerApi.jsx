@@ -8,6 +8,7 @@ const instance = axios.create({
 });
 const media_type = 'movie';
 const time_window = 'week';
+export const apiSetup = {};
 
 export const getMovies = query => {
   if (query === '') return;
@@ -18,9 +19,13 @@ export const getMovies = query => {
   }
 };
 
+export const getMovieDetails = async movieId => {
+  const { data } = await instance.get(`/movie/${movieId}`);
+  return data;
+};
+
 export const getTrendedMovies = async () => {
   const { data } = await instance.get(`/trending/${media_type}/${time_window}`);
-  console.log('trend', data);
   return data;
 };
 
@@ -30,6 +35,15 @@ export const getMoviesBySearch = async query => {
       query,
     },
   });
-  console.log('search', data);
   return data;
 };
+
+export const getApiConfig = async () => {
+  const { data } = await instance.get(`/configuration`);
+  apiSetup.images = data.images;
+};
+
+(function init() {
+  getApiConfig();
+  //  console.log('init API : ', apiSetup);
+})();
