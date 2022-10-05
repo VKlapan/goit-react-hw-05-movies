@@ -13,7 +13,6 @@ const Cast = () => {
     const getCast = async id => {
       const { cast } = await getMovieCredits(id);
       setCast(cast);
-      console.log(cast);
     };
     getCast(movieId);
   }, [movieId]);
