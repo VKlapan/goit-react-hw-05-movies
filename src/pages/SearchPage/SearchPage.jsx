@@ -1,12 +1,14 @@
 import SearchForm from 'components/SearchForm/SearchForm';
 import Movies from 'components/Movies/Movies';
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const SearchPage = () => {
-  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get('query') ?? '';
 
   const onSubmit = query => {
-    setQuery(query);
+    setSearchParams(query === '' || query === null ? {} : { query: query });
   };
 
   return (

@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useState, useEffect, useContext, useRef } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import MovieDetailsNavigation from 'components/MovieDetailsNavigation/MovieDetailsNavigation';
 import { getMovieDetails } from 'servises/handlerApi';
 import ctx from '../../contexts/setupContext';
@@ -7,7 +7,12 @@ import { MovieCard, MoviePoster } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { images } = useContext(ctx);
-  //  console.log('context', images);
+
+  const location = useLocation();
+
+  const locationRef = useRef(
+    location.state?.from?.pathname + location.state?.from?.search
+  );
 
   const { movieId } = useParams();
 
@@ -16,11 +21,7 @@ const MovieDetails = () => {
   const getGenreNames = genres => genres.map(genre => genre.name).join(',');
 
   useEffect(() => {
-    const getDataMovie = async id => {
-      const details = await getMovieDetails(id);
-      setMovieDetails(details);
-    };
-    getDataMovie(movieId);
+    getMovieDetails(movieId).then(setMovieDetails);
   }, [movieId]);
 
   if (!movieDetails || images === undefined) return;
@@ -29,8 +30,10 @@ const MovieDetails = () => {
 
   return (
     <>
+      <Link to={locationRef.current}>
+        <p>GO BACK</p>
+      </Link>
       <div>Movie Page</div>
-      <p>id = {movieId}</p>
       <MovieCard>
         <MoviePoster>
           <img
