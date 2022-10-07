@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'servises/handlerApi';
 import ctx from '../../contexts/setupContext';
+import { CastGrid } from './Cast.styled';
 
 const Cast = () => {
   const { images } = useContext(ctx);
@@ -21,7 +22,7 @@ const Cast = () => {
   const { secure_base_url, poster_sizes } = images;
 
   return (
-    <ul>
+    <CastGrid>
       {cast.map(item => (
         <li key={item.cast_id}>
           <img
@@ -32,7 +33,7 @@ const Cast = () => {
           <p>Character: {item.character}</p>
         </li>
       ))}
-    </ul>
+    </CastGrid>
   );
 };
 
