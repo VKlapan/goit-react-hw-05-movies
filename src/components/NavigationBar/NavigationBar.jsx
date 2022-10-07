@@ -1,11 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { Menu, MenuLink } from './NavigationBar.styled';
 
 const NavigationBar = () => {
   return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/movies">Movies</NavLink>
-    </div>
+    <Menu>
+      <MenuLink to="/" end>
+        Home
+      </MenuLink>
+      <MenuLink to="/movies">Movies</MenuLink>
+    </Menu>
   );
 };
 

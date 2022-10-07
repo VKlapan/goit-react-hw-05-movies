@@ -16,7 +16,7 @@ const Movies = ({ query }) => {
 
   return (
     <>
-      <div>List Of Movies by {query}</div>
+      {!query && <h2>Trending today</h2>}
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>

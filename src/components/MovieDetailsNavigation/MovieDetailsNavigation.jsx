@@ -1,11 +1,14 @@
-import { Link } from 'react-router-dom';
+import { DetailsLink, DetailsMenu } from './MovieDetailsNavigation.styled';
 
 const MovieDetailsNavigation = () => {
   return (
-    <div>
-      <Link to="cast">Cast</Link>
-      <Link to="reviews">Reviews</Link>
-    </div>
+    <>
+      <h3>Additional Information</h3>
+      <DetailsMenu>
+        <DetailsLink to="cast">Cast</DetailsLink>
+        <DetailsLink to="reviews">Reviews</DetailsLink>
+      </DetailsMenu>
+    </>
   );
 };
 

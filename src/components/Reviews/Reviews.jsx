@@ -18,7 +18,6 @@ const Reviews = () => {
 
   return (
     <>
-      <div>Reviews of movie id = {movieId}</div>
       {reviews.length === 0 ? (
         <p> There's no review yet :-(</p>
       ) : (

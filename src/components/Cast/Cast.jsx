@@ -21,21 +21,18 @@ const Cast = () => {
   const { secure_base_url, poster_sizes } = images;
 
   return (
-    <>
-      <div>Cast of movie id = {movieId}</div>
-      <ul>
-        {cast.map(item => (
-          <li key={item.cast_id}>
-            <img
-              src={secure_base_url + poster_sizes[1] + item.profile_path}
-              alt={item.name}
-            />
-            <p>Name: {item.name}</p>
-            <p>Character: {item.character}</p>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {cast.map(item => (
+        <li key={item.cast_id}>
+          <img
+            src={secure_base_url + poster_sizes[1] + item.profile_path}
+            alt={item.name}
+          />
+          <p>Name: {item.name}</p>
+          <p>Character: {item.character}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 
