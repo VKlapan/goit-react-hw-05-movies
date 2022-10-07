@@ -1,4 +1,5 @@
 import { MovieCard, MoviePoster } from './MovieItem.styled';
+import PropTypes from 'prop-types';
 
 const MovieItem = ({ images, movieDetails }) => {
   const { secure_base_url, poster_sizes } = images;
@@ -33,3 +34,17 @@ const MovieItem = ({ images, movieDetails }) => {
 };
 
 export default MovieItem;
+MovieItem.propTypes = {
+  images: PropTypes.shape({
+    secure_base_url: PropTypes.string,
+    poster_sizes: PropTypes.array,
+  }),
+  movieDetails: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }),
+};

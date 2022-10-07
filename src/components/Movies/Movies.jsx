@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getMovies } from 'servises/handlerApi';
+import PropTypes from 'prop-types';
 
 const Movies = ({ query }) => {
   const [movies, setMovies] = useState([]);
@@ -31,3 +32,7 @@ const Movies = ({ query }) => {
 };
 
 export default Movies;
+
+Movies.propTypes = {
+  query: PropTypes.string,
+};
