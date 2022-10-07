@@ -26,7 +26,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={locationRef.current}>
+      <Link to={locationRef.current ? locationRef.current : '/movies'}>
         <p>GO BACK</p>
       </Link>
       <MovieItem images={images} movieDetails={movieDetails} />
