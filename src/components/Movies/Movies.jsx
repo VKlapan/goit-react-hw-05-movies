@@ -42,5 +42,6 @@ const Movies = ({ getMoviesFromApi, query }) => {
 export default Movies;
 
 Movies.propTypes = {
+  getMoviesFromApi: PropTypes.func,
   query: PropTypes.string,
 };
