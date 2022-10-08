@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'servises/handlerApi';
 import ctx from '../../contexts/setupContext';
 import { CastGrid } from './Cast.styled';
+import noimage_url from '../../images/noimage.png';
 
 const Cast = () => {
   const { images } = useContext(ctx);
@@ -26,7 +27,11 @@ const Cast = () => {
       {cast.map(item => (
         <li key={item.cast_id}>
           <img
-            src={secure_base_url + poster_sizes[1] + item.profile_path}
+            src={
+              item.profile_path
+                ? secure_base_url + poster_sizes[1] + item.profile_path
+                : noimage_url
+            }
             alt={item.name}
           />
           <p>Name: {item.name}</p>

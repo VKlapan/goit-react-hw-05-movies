@@ -34,18 +34,22 @@ export const getMovieDetails = async movieId => {
   return data;
 };
 
-const getTrendedMovies = async () => {
+export const getTrendedMovies = async query => {
   const { data } = await instance.get(`/trending/${media_type}/${time_window}`);
   return data;
 };
 
-const getMoviesBySearch = async query => {
-  const { data } = await instance.get('/search/movie', {
-    params: {
-      query,
-    },
-  });
-  return data;
+export const getMoviesBySearch = async query => {
+  try {
+    const { data } = await instance.get('/search/movie', {
+      params: {
+        query,
+      },
+    });
+    return data;
+  } catch (error) {
+    alert(error);
+  }
 };
 
 export const getApiConfig = async () => {

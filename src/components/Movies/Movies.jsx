@@ -1,32 +1,40 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getMovies } from 'servises/handlerApi';
 import PropTypes from 'prop-types';
 
-const Movies = ({ query }) => {
+const Movies = ({ getMoviesFromApi, query }) => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     const getListMovies = async () => {
-      const { results } = await getMovies(query);
-      setMovies(results);
+      try {
+        const { results } = await getMoviesFromApi(query);
+        setMovies(results);
+      } catch (error) {
+        alert(error);
+      }
     };
+
     getListMovies();
-  }, [query]);
+  }, [getMoviesFromApi, query]);
 
   return (
     <>
       {!query && <h2>Trending today</h2>}
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-              {movie.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {movies.length === 0 ? (
+        <p>Sorry, there is no movie with {query} :(((</p>
+      ) : (
+        <ul>
+          {movies.map(movie => (
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                {movie.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };

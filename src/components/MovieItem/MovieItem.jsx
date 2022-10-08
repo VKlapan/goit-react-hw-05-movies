@@ -1,5 +1,6 @@
 import { MovieCard, MoviePoster } from './MovieItem.styled';
 import PropTypes from 'prop-types';
+import noposter_url from '../../images/noposter.png';
 
 const MovieItem = ({ images, movieDetails }) => {
   const { secure_base_url, poster_sizes } = images;
@@ -15,7 +16,11 @@ const MovieItem = ({ images, movieDetails }) => {
     <MovieCard>
       <MoviePoster>
         <img
-          src={secure_base_url + poster_sizes[2] + poster_path}
+          src={
+            poster_path
+              ? secure_base_url + poster_sizes[2] + poster_path
+              : noposter_url
+          }
           alt={title}
         />
       </MoviePoster>
